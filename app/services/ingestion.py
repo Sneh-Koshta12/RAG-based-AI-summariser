@@ -1,6 +1,8 @@
 from pathlib import Path
+from fastapi import HTTPException
 from llama_cloud import LlamaCloud
 from app.core.config import settings
+
 
 # Initialize the LlamaCloud client
 client = LlamaCloud(api_key=settings.LLAMA_CLOUD_API_KEY)
@@ -31,3 +33,5 @@ def parse_pdf_document(file_path: str) -> str:
             markdown_content.append(page.markdown)
             
     return "\n\n".join(markdown_content)
+
+    

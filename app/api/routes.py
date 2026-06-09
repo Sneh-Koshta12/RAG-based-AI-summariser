@@ -3,7 +3,7 @@ import tempfile
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from app.services.ingestion import parse_pdf_document
 from app.services.vector_store import chunk_and_store_markdown
-
+from app.services.query_engine import query_rag_system
 router = APIRouter()
 
 @router.post("/ingest/")
@@ -35,3 +35,17 @@ def ingest_document(file: UploadFile = File(...)):
     finally:
         if 'tmp_path' in locals() and os.path.exists(tmp_path):
             os.remove(tmp_path)
+
+@router.get("/query/")
+def query_document(question: str):
+    if not question.strip():
+        raise HTTPException(status_code=400, detail="Question cannot be empty.")
+    
+    try:
+        answer = query_rag_system(question)
+        return {
+            "question": question, 
+            "answer": answer
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
