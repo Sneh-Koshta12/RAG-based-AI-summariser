@@ -1,0 +1,10 @@
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic-settings>=2.2.1
+python-multipart>=0.0.9
+llama-cloud>=0.1.3
+pymongo>=4.6.2
+langchain>=0.1.13
+langchain-mongodb>=0.1.2
+langchain-huggingface>=0.0.1
+sentence-transformers>=2.6.1
