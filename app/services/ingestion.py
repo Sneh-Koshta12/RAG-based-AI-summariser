@@ -1,5 +1,5 @@
 from pathlib import Path
-from fastapi import HTTPException
+
 from llama_cloud import LlamaCloud
 from app.core.config import settings
 

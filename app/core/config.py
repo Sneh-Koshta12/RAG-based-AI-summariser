@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     MONGO_URI: str
     MONGO_DB_NAME: str = "rag_summarizer"
     MONGO_COLLECTION_NAME: str = "documents"
-    HROQ_API_KEY: str
+    GROQ_API_KEY: str
 
     class Config:
         env_file = ".env"
