@@ -15,6 +15,8 @@ def query_rag_system(user_query: str) -> str:
     # Step 1: Fetch top 10 raw documents from MongoDB using local embeddings
     docs = vector_store.similarity_search(query=user_query, k=10)
     
+    print(f"\n--- DIAGNOSTIC: RAW DB RESULTS = {len(docs)} ---\n")
+    
     if not docs:
         return "No relevant context found in the document database."
 
@@ -40,7 +42,7 @@ def query_rag_system(user_query: str) -> str:
     }
     
     payload = {
-        "model": "llama3-8b-8192",
+        "model": "openai/gpt-oss-20b",
         "messages": [
             {
                 "role": "system",
